@@ -1,0 +1,9 @@
+Account section
+
+Endpoint: Authorized
+Test cases:
+1. Authorize valid user
+2. Authorize invalid user
+3. Invalid Authorized endpoint
+4.
+

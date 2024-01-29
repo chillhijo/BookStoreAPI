@@ -16,13 +16,23 @@ public class AccountAuthorizationErrorResponse {
         this.code = code;
     }
 
-    public void assertAuthErrorResponse() {
+    public void assertInvalidUserAuthErrorResponse() {
         Assert.assertEquals(code,
                 1207,
                 "Incorrect code");
 
         Assert.assertEquals(message,
                 "User not found!",
+                "Incorrect error description");
+    }
+
+    public void assertEmptyCredentialAuthErrorResponse() {
+        Assert.assertEquals(code,
+                1200,
+                "Incorrect code");
+
+        Assert.assertEquals(message,
+                "UserName and Password required.",
                 "Incorrect error description");
     }
 }
