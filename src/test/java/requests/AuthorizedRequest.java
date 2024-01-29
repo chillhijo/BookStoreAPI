@@ -6,7 +6,7 @@ import payloads.AccountRequestBody;
 
 import static io.restassured.RestAssured.given;
 
-public class AccountRequest {
+public class AuthorizedRequest {
 
     public static Response authorizedUser(String endpoint, AccountRequestBody accountRequestBody) {
         String requestBody = accountRequestBody.createAuthorizedUserRequestBody();
@@ -19,6 +19,5 @@ public class AccountRequest {
                 .body(requestBody)
                 .post(endpoint);
     }
-
 
 }

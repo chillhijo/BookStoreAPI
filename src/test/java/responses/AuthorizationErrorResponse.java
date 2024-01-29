@@ -6,12 +6,12 @@ import org.testng.Assert;
 
 @Getter
 @Setter
-public class AccountAuthorizationErrorResponse {
+public class AuthorizationErrorResponse {
 
     private String message;
     private int code;
 
-    public AccountAuthorizationErrorResponse(String message, int code) {
+    public AuthorizationErrorResponse(String message, int code) {
         this.message = message;
         this.code = code;
     }
