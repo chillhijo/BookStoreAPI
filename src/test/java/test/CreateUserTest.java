@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 import payloads.AccountRequestBody;
 import requests.CreateUserRequest;
 import responses.CreateUserErrorResponse;
+import responses.CreateUserResponse;
 import util.Constants;
 import util.RandomCredentialGenerator;
 import util.VerifyStatusCode;
@@ -32,6 +33,12 @@ public class CreateUserTest extends RestApiBase {
 
         int statusCode = response.getStatusCode();
         VerifyStatusCode.assertCreateUserSuccessStatusCode(statusCode);
+
+        Gson gson = new Gson();
+        CreateUserResponse createUserResponse = gson.fromJson(response.getBody().asString(), CreateUserResponse.class);
+        createUserResponse.assertBookListEmpty();
+        createUserResponse.assertUsernameSameAs(newUserName);
+
     }
 
     @Test (priority = 2, description = "Try to create new user with already existing user credentials")
