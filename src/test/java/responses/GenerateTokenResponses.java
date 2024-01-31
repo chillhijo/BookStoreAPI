@@ -27,7 +27,6 @@ public class GenerateTokenResponses {
         else {
             System.out.println("User authorization failed.");
         }
-        System.out.println("token: "+token);
         return token;
     }
 

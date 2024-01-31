@@ -5,7 +5,7 @@ import com.google.gson.Gson;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
 import payloads.AccountRequestBody;
-import requests.AuthorizedRequest;
+import requests.GenerateToken;
 import responses.AuthorizationErrorResponse;
 import responses.GenerateTokenResponses;
 import util.Constants;
@@ -23,7 +23,7 @@ public class GenerateTokenTest extends RestApiBase {
                 bookstore_properties.getValue(Constants.VALID_USERNAME),
                 bookstore_properties.getValue(Constants.VALID_PASSWORD));
 
-        Response response = AuthorizedRequest.authorizedUser(
+        Response response = GenerateToken.generateToken(
                 bookstore_properties.getValue(Constants.ENDPOINT_GENERATE_TOKEN),
                 accountRequestBody);
 
@@ -41,7 +41,7 @@ public class GenerateTokenTest extends RestApiBase {
                 bookstore_properties.getValue(Constants.INVALID_USERNAME),
                 bookstore_properties.getValue(Constants.INVALID_PASSWORD));
 
-        Response response = AuthorizedRequest.authorizedUser(
+        Response response = GenerateToken.generateToken(
                 bookstore_properties.getValue(Constants.ENDPOINT_GENERATE_TOKEN),
                 accountRequestBody);
 
@@ -59,7 +59,7 @@ public class GenerateTokenTest extends RestApiBase {
                 bookstore_properties.getValue(Constants.VALID_USERNAME),
                 bookstore_properties.getValue(Constants.VALID_PASSWORD));
 
-        Response response = AuthorizedRequest.authorizedUser(
+        Response response = GenerateToken.generateToken(
                 bookstore_properties.getValue(Constants.INVALID_ENDPOINT_AUTH),
                 accountRequestBody);
 
@@ -73,7 +73,7 @@ public class GenerateTokenTest extends RestApiBase {
                 bookstore_properties.getValue(Constants.EMPTY_USERNAME),
                 bookstore_properties.getValue(Constants.VALID_PASSWORD));
 
-        Response response = AuthorizedRequest.authorizedUser(
+        Response response = GenerateToken.generateToken(
                 bookstore_properties.getValue(Constants.ENDPOINT_GENERATE_TOKEN),
                 accountRequestBody);
 
@@ -91,7 +91,7 @@ public class GenerateTokenTest extends RestApiBase {
                 bookstore_properties.getValue(Constants.VALID_USERNAME),
                 bookstore_properties.getValue(Constants.EMPTY_PASSWORD));
 
-        Response response = AuthorizedRequest.authorizedUser(
+        Response response = GenerateToken.generateToken(
                 bookstore_properties.getValue(Constants.ENDPOINT_GENERATE_TOKEN),
                 accountRequestBody);
 
