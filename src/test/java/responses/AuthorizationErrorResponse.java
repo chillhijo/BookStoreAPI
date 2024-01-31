@@ -49,16 +49,4 @@ public class AuthorizationErrorResponse {
         System.out.println("UserName and Password required.");
     }
 
-    public void assertAlreadyExistingUser() {
-        Assert.assertEquals(code,
-                "1204",
-                "Incorrect code");
-
-        Assert.assertEquals(message,
-                "User exists!",
-                "User doesn`t exist in base!");
-
-        System.out.println("User already exists in base!");
-    }
-
 }
