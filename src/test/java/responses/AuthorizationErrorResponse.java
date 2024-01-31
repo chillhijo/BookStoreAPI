@@ -16,6 +16,16 @@ public class AuthorizationErrorResponse {
         this.code = code;
     }
 
+    public void validateAuthorization() {
+        if (code == 1207) {
+            assertInvalidUserAuthErrorResponse();
+        } else if (code == 1200) {
+            assertEmptyCredentialAuthErrorResponse();
+        }else {
+            System.out.println("Unhandled authorization error code: " + code);
+        }
+    }
+
     public void assertInvalidUserAuthErrorResponse() {
         Assert.assertEquals(code,
                 1207,
@@ -24,6 +34,7 @@ public class AuthorizationErrorResponse {
         Assert.assertEquals(message,
                 "User not found!",
                 "Incorrect error description");
+        System.out.println("User not found!");
     }
 
     public void assertEmptyCredentialAuthErrorResponse() {
@@ -34,5 +45,8 @@ public class AuthorizationErrorResponse {
         Assert.assertEquals(message,
                 "UserName and Password required.",
                 "Incorrect error description");
+
+        System.out.println("UserName and Password required.");
     }
+
 }

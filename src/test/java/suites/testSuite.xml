@@ -1,0 +1,40 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Whole project test suite">
+
+    <test name="Authorization" preserve-order="true">
+        <classes>
+            <class name="test.Authorization_Tests" >
+                <methods>
+                    <include name="validUserAuthorization_Test"/>
+                    <include name="invalidUserCredentialsAuthorization_Test"/>
+                    <include name="invalidUsernameAuthorization_Test"/>
+                    <include name="invalidUserPasswordAuthorization_Test"/>
+                    <include name="emptyUserPasswordAuthorization_Test"/>
+                    <include name="emptyUsernameAuthorization_Test"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="Device Information">
+        <classes>
+            <class name="test.GenerateTokenTest" >
+                <methods>
+                    <include name="generateTokenValidCredentials"/>
+                    <include name="generateTokenInvalidCredentials"/>
+                    <include name="generateTokenInvalidEndpoint"/>
+                    <include name="generateTokenEmptyUserName"/>
+                    <include name="generateTokenEmptyPassword"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <listeners>
+        <listener class-name="util.TestListeners"></listener>
+        <listener class-name="org.testng.reporters.JUnitReportReporter" />
+        <listener class-name="org.testng.reporters.XMLReporter" />
+        <listener class-name="org.testng.reporters.EmailableReporter" />
+    </listeners>
+
+</suite>

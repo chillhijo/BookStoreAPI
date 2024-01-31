@@ -19,7 +19,7 @@ public class Authorization_Tests extends RestApiBase {
         super();
     }
 
-    @Test
+    @Test(priority = 1)
     public void validUserAuthorization_Test() {
         AccountRequestBody accountRequestBody = new AccountRequestBody(
                 bookstore_properties.getValue(Constants.VALID_USERNAME),
@@ -37,7 +37,7 @@ public class Authorization_Tests extends RestApiBase {
                 "Unexpected response body ");
     }
 
-    @Test
+    @Test(priority = 2)
     public void invalidUserCredentialsAuthorization_Test() {
         AccountRequestBody accountRequestBody = new AccountRequestBody(
                 bookstore_properties.getValue(Constants.INVALID_USERNAME),
@@ -57,7 +57,7 @@ public class Authorization_Tests extends RestApiBase {
         }
     }
 
-    @Test
+    @Test(priority = 3)
     public void invalidUsernameAuthorization_Test() {
         AccountRequestBody accountRequestBody = new AccountRequestBody(
                 bookstore_properties.getValue(Constants.INVALID_USERNAME),
@@ -77,7 +77,7 @@ public class Authorization_Tests extends RestApiBase {
         }
     }
 
-    @Test
+    @Test(priority = 4)
     public void invalidUserPasswordAuthorization_Test() {
         AccountRequestBody accountRequestBody = new AccountRequestBody(
                 bookstore_properties.getValue(Constants.VALID_USERNAME),
@@ -97,7 +97,7 @@ public class Authorization_Tests extends RestApiBase {
         }
     }
 
-    @Test
+    @Test(priority = 5)
     public void emptyUserPasswordAuthorization_Test() {
         AccountRequestBody accountRequestBody = new AccountRequestBody(
                 bookstore_properties.getValue(Constants.VALID_USERNAME),
@@ -117,7 +117,7 @@ public class Authorization_Tests extends RestApiBase {
         }
     }
 
-    @Test
+    @Test(priority = 6)
     public void emptyUsernameAuthorization_Test() {
         AccountRequestBody accountRequestBody = new AccountRequestBody(
                 bookstore_properties.getValue(Constants.EMPTY_USERNAME),
