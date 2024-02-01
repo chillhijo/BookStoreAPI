@@ -7,15 +7,14 @@ import payloads.AccountRequestBody;
 import static io.restassured.RestAssured.given;
 
 public class GetUserRequest {
-    public static Response getUser(String userUUID, AccountRequestBody accountRequestBody) {
-        String requestBody = accountRequestBody.createAuthorizedUserRequestBody();
-        return executeGetUserPostRequest(userUUID, requestBody);
+    public static Response getUser(String userUUID, String token) {
+        return executeGetUserPostRequest(userUUID, token);
     }
 
-    public static Response executeGetUserPostRequest(String userUUID, Object requestBody) {
+    public static Response executeGetUserPostRequest(String userUUID, String token) {
         return given()
                 .contentType(ContentType.JSON)
-                .body(requestBody)
-                .get(userUUID);
+                .header("Authorization", "Bearer " + token)
+                .get("User/" + userUUID);
     }
 }

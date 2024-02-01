@@ -2,7 +2,6 @@ package test;
 
 import base.RestApiBase;
 import io.restassured.response.Response;
-import net.bytebuddy.matcher.CollectionOneToOneMatcher;
 import org.testng.annotations.Test;
 import payloads.AccountRequestBody;
 import requests.LoginUser;
@@ -15,7 +14,7 @@ public class LoginUserTest extends RestApiBase {
     }
 
     @Test
-    public void loginUserTest() {
+    public void loginValidUserTest() {
         AccountRequestBody loginRequestBody = new AccountRequestBody(
                 bookstore_properties.getValue(Constants.VALID_USERNAME),
                 bookstore_properties.getValue(Constants.VALID_PASSWORD));
@@ -25,5 +24,18 @@ public class LoginUserTest extends RestApiBase {
                 loginRequestBody);
 
         response.getBody().prettyPrint();
+    }
+
+    @Test
+    public void loginInvalidUsernameTest() {
+        AccountRequestBody loginRequestBody = new AccountRequestBody(
+                "dusko",
+                bookstore_properties.getValue(Constants.VALID_PASSWORD));
+
+        Response response = LoginUser.loginUser(
+                bookstore_properties.getValue(Constants.ENDPOINT_LOGIN_USER),
+                loginRequestBody);
+
+
     }
 }
