@@ -29,7 +29,6 @@ public class CreateUserTest extends RestApiBase {
         Response response = CreateUserRequest.createUser(
                 bookstore_properties.getValue(Constants.ENDPOINT_CREATE_USER),
                 newUserBody);
-        response.getBody().prettyPrint();
 
         int statusCode = response.getStatusCode();
         VerifyStatusCode.assertCreateUserSuccessStatusCode(statusCode);

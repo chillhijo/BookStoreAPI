@@ -113,7 +113,7 @@ public class Authorization_Tests extends RestApiBase {
         String responseJson = response.getBody().asString();
         if (statusCode != 200) {
             AuthorizationErrorResponse responseObj = new Gson().fromJson(responseJson, AuthorizationErrorResponse.class);
-            responseObj.assertEmptyCredentialAuthErrorResponse();
+            responseObj.validateAuthorization();
         }
     }
 
@@ -133,7 +133,7 @@ public class Authorization_Tests extends RestApiBase {
         String responseJson = response.getBody().asString();
         if (statusCode != 200) {
             AuthorizationErrorResponse responseObj = new Gson().fromJson(responseJson, AuthorizationErrorResponse.class);
-            responseObj.assertEmptyCredentialAuthErrorResponse();
+            responseObj.validateAuthorization();
         }
     }
 }
