@@ -10,7 +10,7 @@ import java.util.List;
 @Setter
 public class CreateUserResponse {
 
-    private String userId;
+    private String userID;
     private String username;
     private List<Book> books;
 
