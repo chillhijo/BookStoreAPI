@@ -5,9 +5,9 @@ import com.google.gson.Gson;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
 import payloads.AccountRequestBody;
-import requests.CreateUserRequest;
+import requests.CreateUser;
 import requests.GenerateToken;
-import requests.GetUserRequest;
+import requests.GetUser;
 import requests.LoginUser;
 import responses.CreateUserResponse;
 import responses.GenerateTokenResponses;
@@ -39,7 +39,7 @@ public class GetUserTest extends RestApiBase {
         Gson gson = new Gson();
         LoginSuccessResponse loginSuccessResponse = gson.fromJson(loginResponse.getBody().asString(), LoginSuccessResponse.class);
 
-        Response userResponse = GetUserRequest.getUser(
+        Response userResponse = GetUser.getUser(
                 loginSuccessResponse.getUserId(),
                 loginSuccessResponse.getToken());
 
@@ -56,7 +56,7 @@ public class GetUserTest extends RestApiBase {
         System.out.println("user: " + newUserName);
         System.out.println("pass: " + newPassword);
 
-        Response response = CreateUserRequest.createUser(
+        Response response = CreateUser.createUser(
                 bookstore_properties.getValue(Constants.ENDPOINT_CREATE_USER),
                 newUserBody);
         System.out.println("create user response below");
@@ -76,7 +76,7 @@ public class GetUserTest extends RestApiBase {
         System.out.println("ID: " + userId);
         System.out.println("token: " + userToken);
 
-        Response createdUserResponse = GetUserRequest.getUser(userId, userToken);
+        Response createdUserResponse = GetUser.getUser(userId, userToken);
 
         createdUserResponse.getBody().prettyPrint();
     }

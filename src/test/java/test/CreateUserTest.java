@@ -5,7 +5,7 @@ import com.google.gson.Gson;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
 import payloads.AccountRequestBody;
-import requests.CreateUserRequest;
+import requests.CreateUser;
 import responses.CreateUserErrorResponse;
 import responses.CreateUserResponse;
 import util.Constants;
@@ -26,7 +26,7 @@ public class CreateUserTest extends RestApiBase {
         AccountRequestBody newUserBody = new AccountRequestBody(
                 newUserName, newPassword);
 
-        Response response = CreateUserRequest.createUser(
+        Response response = CreateUser.createUser(
                 bookstore_properties.getValue(Constants.ENDPOINT_CREATE_USER),
                 newUserBody);
 
@@ -46,7 +46,7 @@ public class CreateUserTest extends RestApiBase {
                 bookstore_properties.getValue(Constants.VALID_USERNAME),
                 bookstore_properties.getValue(Constants.VALID_PASSWORD));
 
-        Response response = CreateUserRequest.createUser(
+        Response response = CreateUser.createUser(
                 bookstore_properties.getValue(Constants.ENDPOINT_CREATE_USER),
                 existingUserBody);
 
@@ -67,7 +67,7 @@ public class CreateUserTest extends RestApiBase {
         AccountRequestBody newUserBody = new AccountRequestBody(
                 newUserName, newPassword);
 
-        Response response = CreateUserRequest.createUser(
+        Response response = CreateUser.createUser(
                 bookstore_properties.getValue(Constants.ENDPOINT_CREATE_USER),
                 newUserBody);
 

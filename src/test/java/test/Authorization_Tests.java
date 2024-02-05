@@ -5,7 +5,7 @@ import com.google.gson.Gson;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import payloads.AccountRequestBody;
-import requests.AuthorizedRequest;
+import requests.Authorized;
 import org.testng.annotations.Test;
 import responses.AuthorizationErrorResponse;
 import util.Constants;
@@ -25,7 +25,7 @@ public class Authorization_Tests extends RestApiBase {
                 bookstore_properties.getValue(Constants.VALID_USERNAME),
                 bookstore_properties.getValue(Constants.VALID_PASSWORD));
 
-        Response response = AuthorizedRequest.authorizedUser(
+        Response response = Authorized.authorizedUser(
                 bookstore_properties.getValue(Constants.ENDPOINT_AUTH),
                 accountRequestBody);
 
@@ -43,7 +43,7 @@ public class Authorization_Tests extends RestApiBase {
                 bookstore_properties.getValue(Constants.INVALID_USERNAME),
                 bookstore_properties.getValue(Constants.INVALID_PASSWORD));
 
-        Response response = AuthorizedRequest.authorizedUser(
+        Response response = Authorized.authorizedUser(
                 bookstore_properties.getValue(Constants.ENDPOINT_AUTH),
                 accountRequestBody);
 
@@ -63,7 +63,7 @@ public class Authorization_Tests extends RestApiBase {
                 bookstore_properties.getValue(Constants.INVALID_USERNAME),
                 bookstore_properties.getValue(Constants.VALID_PASSWORD));
 
-        Response response = AuthorizedRequest.authorizedUser(
+        Response response = Authorized.authorizedUser(
                 bookstore_properties.getValue(Constants.ENDPOINT_AUTH),
                 accountRequestBody);
 
@@ -83,7 +83,7 @@ public class Authorization_Tests extends RestApiBase {
                 bookstore_properties.getValue(Constants.VALID_USERNAME),
                 bookstore_properties.getValue(Constants.INVALID_PASSWORD));
 
-        Response response = AuthorizedRequest.authorizedUser(
+        Response response = Authorized.authorizedUser(
                 bookstore_properties.getValue(Constants.ENDPOINT_AUTH),
                 accountRequestBody);
 
@@ -103,7 +103,7 @@ public class Authorization_Tests extends RestApiBase {
                 bookstore_properties.getValue(Constants.VALID_USERNAME),
                 bookstore_properties.getValue(Constants.EMPTY_PASSWORD));
 
-        Response response = AuthorizedRequest.authorizedUser(
+        Response response = Authorized.authorizedUser(
                 bookstore_properties.getValue(Constants.ENDPOINT_AUTH),
                 accountRequestBody);
 
@@ -123,7 +123,7 @@ public class Authorization_Tests extends RestApiBase {
                 bookstore_properties.getValue(Constants.EMPTY_USERNAME),
                 bookstore_properties.getValue(Constants.VALID_PASSWORD));
 
-        Response response = AuthorizedRequest.authorizedUser(
+        Response response = Authorized.authorizedUser(
                 bookstore_properties.getValue(Constants.ENDPOINT_AUTH),
                 accountRequestBody);
 

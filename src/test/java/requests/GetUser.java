@@ -2,11 +2,10 @@ package requests;
 
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import payloads.AccountRequestBody;
 
 import static io.restassured.RestAssured.given;
 
-public class GetUserRequest {
+public class GetUser {
     public static Response getUser(String userUUID, String token) {
         System.out.println("----------------------------------");
         System.out.println("getUser");
