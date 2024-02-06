@@ -1,14 +1,12 @@
-package payloads;
+package responses;
 
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
-
 @Getter
 @Setter
-public class Book {
-
+public class BooksListResponse {
     private String isbn;
     private String title;
     private String subTitle;
@@ -18,5 +16,4 @@ public class Book {
     private int pages;
     private String description;
     private String website;
-
 }

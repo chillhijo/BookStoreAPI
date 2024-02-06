@@ -43,7 +43,8 @@ public class GetUserTest extends RestApiBase {
                 loginSuccessResponse.getUserId(),
                 loginSuccessResponse.getToken());
 
-        userResponse.getBody().prettyPrint();
+        System.out.println("userId " + loginSuccessResponse.getUserId());
+        System.out.println("userToken: " + loginSuccessResponse.getToken());
     }
 
     @Test (priority = 2)

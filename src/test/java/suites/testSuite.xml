@@ -30,8 +30,41 @@
         </classes>
     </test>
 
+    <test name="Create New User">
+        <classes>
+            <class name="test.CreateUserTest" >
+                <methods>
+                    <include name="createNewUserValidTest"/>
+                    <include name="userAlreadyExistingTest"/>
+                    <include name="createNewUserEmptyUsernameTest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="Get User Informaition">
+        <classes>
+            <class name="test.GetUserTest" >
+                <methods>
+                    <include name="getLogedUserInfo"/>
+                    <include name="getCreatedUserInfo"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="Get Books List">
+        <classes>
+            <class name="test.GetBooksTest" >
+                <methods>
+                    <include name="getBooksTest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
     <listeners>
-        <listener class-name="util.TestListeners"></listener>
+        <listener class-name="util.CustomTestListener"></listener>
         <listener class-name="org.testng.reporters.JUnitReportReporter" />
         <listener class-name="org.testng.reporters.XMLReporter" />
         <listener class-name="org.testng.reporters.EmailableReporter" />
