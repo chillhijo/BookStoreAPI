@@ -13,6 +13,4 @@ public class LoginSuccessResponse {
     private String expires;
     private String created_date;
     private boolean isActive;
-
-
 }

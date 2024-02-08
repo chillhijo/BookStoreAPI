@@ -10,13 +10,18 @@ import java.util.List;
 @Setter
 public class BooksBody {
     private String userId;
-    private List<String> collectionOfIsbn;
+    private List<CollectionOfIsbns> collectionOfIsbn;
+    private String singleIsbn;
 
-    public BooksBody(){}
-    public BooksBody(String userId, List<String> collectionOfIsbn) {
+    public BooksBody(String userId, List<CollectionOfIsbns> collectionOfIsbn) {
         this.userId = userId;
         this.collectionOfIsbn = collectionOfIsbn;
     }
+
+//    public BooksBody(String userId, String singleIsbn) {
+//        this.userId = userId;
+//        this.singleIsbn = singleIsbn;
+//    }
 
     public String createBooksRequestBody() {
         Gson gson = new Gson();

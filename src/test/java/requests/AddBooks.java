@@ -8,12 +8,12 @@ import static io.restassured.RestAssured.given;
 
 public class AddBooks {
 
-    public static Response addBooks(String endpoint, String token, BooksBody booksBody) {
+    public static Response addBooks(String token, BooksBody booksBody, String endpoint) {
         String requestBody = booksBody.createBooksRequestBody();
-        return executeAddBooksRequest(endpoint, token, requestBody);
+        return executeAddBooksRequest(token, requestBody, endpoint);
     }
 
-    public static Response executeAddBooksRequest(String endpoint, String token, Object requestBody) {
+    public static Response executeAddBooksRequest(String token, String requestBody, String endpoint) {
         return given()
                 .contentType(ContentType.JSON)
                 .header("Authorization", "Bearer " + token)

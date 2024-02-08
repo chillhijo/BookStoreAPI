@@ -5,12 +5,16 @@ import com.google.gson.Gson;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
 import payloads.AccountRequestBody;
+import payloads.Book;
+import payloads.BooksBody;
+import payloads.CollectionOfIsbns;
 import requests.*;
 import responses.LoginSuccessResponse;
 import responses.UserInfoResponse;
 import util.Constants;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -19,7 +23,7 @@ public class AddBookToUser extends RestApiBase {
     }
     /*
     Test flow:
-    1. Ulogovati se
+    1. Ulogovati se sa userom
     2. pokupiti userId i token
     3. pozvati addBook i proslijediti poznati isbn od knjige
 
@@ -37,28 +41,23 @@ public class AddBookToUser extends RestApiBase {
         Gson gson = new Gson();
         LoginSuccessResponse loginSuccessResponse = gson.fromJson(loginResponse.getBody().asString(), LoginSuccessResponse.class);
 
-        GetBooksTest getBooksTest = new GetBooksTest();
-        List<String> booksList = getBooksTest.getBooksTest();
+        Response booksResponse = GetBooks.getBooks(
+                bookstore_properties.getValue(Constants.ENDPOINT_BOOKS));
+        List<String> isbnList = booksResponse.jsonPath().getList("books.isbn");
+        String oneIsbn = isbnList.get(1);
 
-        Response userResponse = GetUser.getUser(
-                bookstore_properties.getValue(Constants.ENDPOINT_USER),
+        CollectionOfIsbns singleIsbn = new CollectionOfIsbns(oneIsbn);
+        List<CollectionOfIsbns> singleIsbnList = Collections.singletonList(singleIsbn);
+
+        BooksBody booksBody = new BooksBody(
                 loginSuccessResponse.getUserId(),
-                loginSuccessResponse.getToken());
-//
-//        UserInfoResponse userInfoResponse = gson.fromJson(userResponse.getBody().asString(), UserInfoResponse.class);
-//        userInfoResponse.getBooks();
-//
-//        System.out.println("user response: " + userInfoResponse.getBooks());
-        System.out.println("---------------------------");
-        userResponse.getBody().prettyPrint();
+                singleIsbnList);
 
-
-//        Response bookList = GetBooks.getBooks(
-//                bookstore_properties.getValue(Constants.ENDPOINT_BOOKS));
-//        List<Book> listOfBooks = bookList.jsonPath().getList("isbn");
-//        System.out.println("isbn of svih knjiga: " + listOfBooks);
-//
-//        BooksBody booksBody = new BooksBody();
-//        booksBody.setUserId(userId);
+        Response addBookResponse = AddBooks.addBooks(
+                loginSuccessResponse.getToken(),
+                booksBody,
+                bookstore_properties.getValue(Constants.ENDPOINT_BOOKS));
+    addBookResponse.getBody().prettyPrint();
+        System.out.println("Status code: " + addBookResponse.getStatusCode());
     }
 }
