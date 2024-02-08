@@ -10,10 +10,10 @@ import java.util.List;
 @Setter
 public class BooksBody {
     private String userId;
-    private String collectionOfIsbn;
+    private List<String> collectionOfIsbn;
 
     public BooksBody(){}
-    public BooksBody(String userId, String collectionOfIsbn) {
+    public BooksBody(String userId, List<String> collectionOfIsbn) {
         this.userId = userId;
         this.collectionOfIsbn = collectionOfIsbn;
     }

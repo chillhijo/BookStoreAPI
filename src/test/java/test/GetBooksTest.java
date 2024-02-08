@@ -14,11 +14,11 @@ public class GetBooksTest extends RestApiBase {
     }
 
     @Test
-    public void getBooksTest() {
+    public List getBooksTest() {
         Response booksResponse = GetBooks.getBooks(
                 bookstore_properties.getValue(Constants.ENDPOINT_BOOKS));
-        booksResponse.getBody().prettyPrint();
         List<String> books = booksResponse.jsonPath().getList("books.title");
         System.out.println("List of AddBooks names: " + books);
+        return books;
     }
 }

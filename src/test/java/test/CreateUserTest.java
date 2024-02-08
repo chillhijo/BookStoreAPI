@@ -27,7 +27,7 @@ public class CreateUserTest extends RestApiBase {
                 newUserName, newPassword);
 
         Response response = CreateUser.createUser(
-                bookstore_properties.getValue(Constants.ENDPOINT_CREATE_USER),
+                bookstore_properties.getValue(Constants.ENDPOINT_USER),
                 newUserBody);
 
         int statusCode = response.getStatusCode();
@@ -47,7 +47,7 @@ public class CreateUserTest extends RestApiBase {
                 bookstore_properties.getValue(Constants.VALID_PASSWORD));
 
         Response response = CreateUser.createUser(
-                bookstore_properties.getValue(Constants.ENDPOINT_CREATE_USER),
+                bookstore_properties.getValue(Constants.ENDPOINT_USER),
                 existingUserBody);
 
         int statusCode = response.getStatusCode();
@@ -68,7 +68,7 @@ public class CreateUserTest extends RestApiBase {
                 newUserName, newPassword);
 
         Response response = CreateUser.createUser(
-                bookstore_properties.getValue(Constants.ENDPOINT_CREATE_USER),
+                bookstore_properties.getValue(Constants.ENDPOINT_USER),
                 newUserBody);
 
         int statusCode = response.getStatusCode();

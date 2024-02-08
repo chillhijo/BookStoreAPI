@@ -22,9 +22,9 @@ public class RestApiBase {
         RestAssured.baseURI = API_BASE_URL;
     }
 
-    @AfterSuite
-    public void sendEmailReport() {
-        EmailSender emailSender = new EmailSender();
-        emailSender.sendEmailReport();
-    }
+//    @AfterSuite
+//    public void sendEmailReport() {
+//        EmailSender emailSender = new EmailSender();
+//        emailSender.sendEmailReport();
+//    }
 }

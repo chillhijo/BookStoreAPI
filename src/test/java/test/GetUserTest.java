@@ -2,6 +2,7 @@ package test;
 
 import base.RestApiBase;
 import com.google.gson.Gson;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
 import payloads.AccountRequestBody;
@@ -16,6 +17,8 @@ import util.Constants;
 import util.RandomCredentialGenerator;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.stream.Stream;
 
 public class GetUserTest extends RestApiBase {
     public GetUserTest() throws IOException {
@@ -40,11 +43,12 @@ public class GetUserTest extends RestApiBase {
         LoginSuccessResponse loginSuccessResponse = gson.fromJson(loginResponse.getBody().asString(), LoginSuccessResponse.class);
 
         Response userResponse = GetUser.getUser(
-                loginSuccessResponse.getUserId(),
-                loginSuccessResponse.getToken());
+                loginSuccessResponse.getToken(),
+                bookstore_properties.getValue(Constants.ENDPOINT_USER),
+                loginSuccessResponse.getUserId());
 
-        System.out.println("userId " + loginSuccessResponse.getUserId());
-        System.out.println("userToken: " + loginSuccessResponse.getToken());
+        userResponse.getBody().prettyPrint();
+        System.out.println("-------------------------------");
     }
 
     @Test (priority = 2)
@@ -58,7 +62,7 @@ public class GetUserTest extends RestApiBase {
         System.out.println("pass: " + newPassword);
 
         Response response = CreateUser.createUser(
-                bookstore_properties.getValue(Constants.ENDPOINT_CREATE_USER),
+                bookstore_properties.getValue(Constants.ENDPOINT_USER),
                 newUserBody);
         System.out.println("create user response below");
         response.getBody().prettyPrint();
@@ -77,7 +81,10 @@ public class GetUserTest extends RestApiBase {
         System.out.println("ID: " + userId);
         System.out.println("token: " + userToken);
 
-        Response createdUserResponse = GetUser.getUser(userId, userToken);
+        Response createdUserResponse = GetUser.getUser(
+                userToken,
+                bookstore_properties.getValue(Constants.ENDPOINT_USER),
+                userId);
 
         createdUserResponse.getBody().prettyPrint();
     }

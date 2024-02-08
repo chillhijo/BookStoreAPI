@@ -6,25 +6,16 @@ import io.restassured.response.Response;
 import static io.restassured.RestAssured.given;
 
 public class GetUser {
-    public static Response getUser(String userUUID, String token) {
-//        System.out.println("----------------------------------");
-//        System.out.println("getUser");
-//        System.out.println("userUUID: " + userUUID);
-//        System.out.println("token: " + token);
-//        System.out.println("----------------------------------");
+    public static Response getUser( String token, String endpoint,String userUUID) {
+        return executeGetUserPostRequest(token, endpoint, userUUID);
 
-        return executeGetUserPostRequest(userUUID, token);
     }
 
-    public static Response executeGetUserPostRequest(String userUUID, String token) {
-//        System.out.println("----------------------------------");
-//        System.out.println("executeGetUserPostRequest");
-//        System.out.println("userUUID: " + userUUID);
-//        System.out.println("token: " + token);
-//        System.out.println("----------------------------------");
+    public static Response executeGetUserPostRequest(String token, String endpoint,String userUUID) {
         return given()
-                .contentType(ContentType.JSON)
+                .header("Content-Type", "application/json")
                 .header("Authorization", "Bearer " + token)
-                .get("User/" + userUUID);
+                .header("Accept", "application/json")
+                .get(endpoint +"/"+ userUUID);
     }
 }
